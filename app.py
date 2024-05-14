@@ -1,6 +1,4 @@
-from flask import Flask, request, render_template
-from flask import Flask, request, jsonify
-
+from flask import Flask, request, render_template, jsonify
 import yfinance as yf
 import plotly.graph_objs as go
 import matplotlib.pyplot as plt

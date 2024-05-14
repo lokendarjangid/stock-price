@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background-color: #333;
+            color: #fff;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #555;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 350px;
+            max-width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: green;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: black;
+        }
+
+        .buttons{
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="button-container">
+            <a href="/" class="button">Home</a>
+            <a href="/visualize" onclick="submitForm()" class="button">Visualization Data</a>
+            <a href="/dashboard" class="button">Dashboard</a>
+        </div>
+    </div>
+    
+</div>
+
+<div class="card">
+    <div class="card-content">
+        
+        <h2>Stock Data Form</h2>
+        <div class="form-group">
+         <form id="stockForm" action="/stock" method="post">
+            <label for="ticker">Stock Ticker:</label>
+            <input type="text" name="ticker" id="ticker"><br><br>
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date"><br><br>
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date"><br><br>
+            <input type="submit" value="Get Data" onclick="showLoader()">
+            <div class="loader" id="loader"></div>
+        </form>
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

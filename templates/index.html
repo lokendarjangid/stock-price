@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data</title>
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="date"] {
+    width: calc(100% - 22px); /* Adjust for padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"], input[type="button"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+    background-color: #555;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    display: none; /* Initially hidden */
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/other">Stock Dashboard</a>
+    </div>
+    <div class="container">
+        <h1>Stock Data Retrieval</h1>
+        <form id="stockForm" action="/stock" method="post">
+            <label for="ticker">Stock Ticker:</label>
+            <input type="text" name="ticker" id="ticker"><br><br>
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date"><br><br>
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date"><br><br>
+            <input type="submit" value="Get Data" onclick="showLoader()">
+            <div class="loader" id="loader"></div>
+        </form>
+        <br>
+        <form action="/visualize" method="post">
+            <input type="hidden" name="ticker" value="{{ request.form.ticker }}">
+            <input type="hidden" name="start_date" value="{{ request.form.start_date }}">
+            <input type="hidden" name="end_date" value="{{ request.form.end_date }}">
+            <input type="submit" value="Visualize Data">
+        </form>
+    </div>
+
+    <script>
+        function showLoader() {
+            document.getElementById('loader').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
